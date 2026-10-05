@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LexiBot | AI Legal Document Analysis</title>
+<meta name="description" content="Upload a legal PDF, ask a question by text or voice, and get an AI case summary, recommendation and risk score.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo.png') }}">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gRisk" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#22C55E"/><stop offset=".55" stop-color="#F59E0B"/><stop offset="1" stop-color="#EF4444"/></linearGradient>
+<linearGradient id="gLogo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs></svg>
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<nav class="navbar" id="navbar" aria-label="Main">
+  <a href="#" class="logo" aria-label="LexiBot home">
+    <svg width="34" height="34" viewBox="0 0 32 32" fill="none" stroke="url(#gLogo)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4v22M9 26h14M6 9h20"/><path d="M6 9l-3 7a3 3 0 006 0zM26 9l-3 7a3 3 0 006 0z"/><circle cx="16" cy="4" r="1.5"/></svg>
+    <span><b>LexiBot</b><small>AI Legal Intelligence</small></span>
+  </a>
+  <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="nav-links" id="navLinks">
+    <a href="#features">Features</a><a href="#how">How It Works</a><a href="#analysis">AI Analysis</a><a href="#tech">Technology</a><a href="#about">About</a>
+    <a href="https://lexibot-rkka.onrender.com/" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Try LexiBot</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-text">
+    <span class="badge">AI-POWERED LEGAL DOCUMENT ANALYSIS</span>
+    <h1>Understand Legal Documents.<br>Make <span class="grad">Smarter Decisions.</span></h1>
+    <p>Upload a legal document, ask your question, and let LexiBot transform complex legal text into clear summaries, recommendations, and AI-powered risk insights.</p>
+    <div class="actions"><a href="https://lexibot-rkka.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Analyze a Document →</a><a href="#how" class="btn btn-ghost">See How It Works</a></div>
+    <p class="trust">PDF Analysis • AI Summary • Legal Recommendation • Risk Insights</p>
+  </div>
+
+  <div class="mock glass" aria-label="LexiBot analysis preview">
+    <div class="mock-top"><span>CASE ANALYSIS</span><span class="file">📄 Employment_Dispute.pdf</span></div>
+    <div class="scan"><i></i><span>DOCUMENT ANALYZED ✓</span></div>
+    <div class="mock-grid">
+      <div class="mini"><h5>CASE SUMMARY</h5><p>Employment dispute involving termination and contractual obligations between employer and employee…</p></div>
+      <div class="mini"><h5>LEGAL RECOMMENDATION</h5><p>Based on the provided case information, review the notice clause and gather written communication…</p></div>
+      <div class="mini risk-mini">
+        <h5>LEGAL RISK</h5>
+        <div class="gauge sm" data-score="72"><svg viewBox="0 0 120 120"><circle class="trk" cx="60" cy="60" r="54"/><circle class="val" cx="60" cy="60" r="54"/></svg><b><em>0</em></b></div>
+        <p class="verdict">Moderate Risk</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="strip" aria-label="Capabilities">
+  <p>BUILT FOR INTELLIGENT LEGAL DOCUMENT ANALYSIS</p>
+  <ul><li>📄 PDF Documents</li><li>✨ AI Summarization</li><li>⚖️ Legal Recommendations</li><li>📊 Risk Analysis</li><li>🎙️ Voice Queries</li></ul>
+</section>
+
+<section class="sec" id="problem">
+  <h2>Legal Documents Shouldn't Feel Impossible to Understand.</h2>
+  <div class="grid3">
+    <article class="card warn"><div class="ico">📚</div><h3>Complex Documents</h3><p>Legal documents often contain lengthy facts, terminology, sections and arguments that are difficult to quickly understand.</p></article>
+    <article class="card warn"><div class="ico">🌊</div><h3>Information Overload</h3><p>Finding the important facts and legal issues manually can take significant time.</p></article>
+    <article class="card warn"><div class="ico">🧭</div><h3>Difficult First-Level Assessment</h3><p>Users may need a quick understanding of the document before deciding what to investigate further.</p></article>
+  </div>
+</section>
+
+<section class="sec" id="solution">
+  <h2>Meet <span class="grad">LexiBot</span></h2>
+  <p class="sub">From a legal PDF to actionable AI insights in seconds.</p>
+  <ol class="flow">
+    <li><i>📄</i><b>PDF Upload</b><span>Add your legal PDF</span></li>
+    <li><i>🔎</i><b>Text Extraction</b><span>Content is read from the file</span></li>
+    <li><i>🧠</i><b>AI Analysis</b><span>LLaMA analyzes the case</span></li>
+    <li><i>🗂️</i><b>Case Summary</b><span>Parties, facts, issues</span></li>
+    <li><i>⚖️</i><b>Recommendation</b><span>Answer to your question</span></li>
+    <li><i>📊</i><b>Risk Score</b><span>0–100 AI insight</span></li>
+  </ol>
+</section>
+
+<section class="sec" id="how">
+  <h2>How It Works</h2>
+  <p class="sub">Four steps. No sign-up, no setup.</p>
+
+  <div class="step">
+    <div class="step-txt"><span class="num">1</span><h3>Upload</h3><p>Upload your legal document as a PDF. Drag and drop or browse.</p></div>
+    <figure class="shot"><img src="{{ url_for('static', filename='img/demo/lexibot-1-upload.png') }}" alt="Upload screen" onerror="this.remove()"><figcaption>Screenshot: Upload screen</figcaption></figure>
+  </div>
+  <div class="step rev">
+    <div class="step-txt"><span class="num">2</span><h3>Ask</h3><p>Type your legal question, or record it with your voice.</p></div>
+    <figure class="shot"><img src="{{ url_for('static', filename='img/demo/lexibot-2-query.png') }}" alt="Query input" onerror="this.remove()"><figcaption>Screenshot: Query &amp; voice input</figcaption></figure>
+  </div>
+  <div class="step">
+    <div class="step-txt"><span class="num">3</span><h3>Analyze</h3><p>LexiBot extracts the document text and uses AI to analyze the case.</p></div>
+    <figure class="shot"><img src="{{ url_for('static', filename='img/demo/lexibot-3-analyzing.png') }}" alt="Analyzing" onerror="this.remove()"><figcaption>Screenshot: Analyzing state</figcaption></figure>
+  </div>
+  <div class="step rev">
+    <div class="step-txt"><span class="num">4</span><h3>Understand</h3><p>Receive a structured summary, recommendation and risk insight.</p></div>
+    <figure class="shot"><img src="{{ url_for('static', filename='img/demo/lexibot-4-results.png') }}" alt="Results" onerror="this.remove()"><figcaption>Screenshot: Results &amp; risk score</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec" id="features">
+  <h2>Everything You Need for a First-Level Legal Analysis</h2>
+  <div class="grid3">
+    <article class="card glass"><div class="ico">📄</div><h3>Smart PDF Analysis</h3><p>Upload a legal PDF and extract its textual content automatically.</p></article>
+    <article class="card glass"><div class="ico">🗂️</div><h3>AI Case Summary</h3><p>A structured summary of parties, background, facts, legal issues, applicable laws/sections and current status.</p></article>
+    <article class="card glass"><div class="ico">⚖️</div><h3>Legal Recommendation</h3><p>Ask a question and receive an AI-generated recommendation based on the analyzed case.</p></article>
+    <article class="card glass"><div class="ico">📊</div><h3>AI Risk Score</h3><p>A 0–100 AI-generated risk score with a verdict and explanation. Example: 72, Moderate Risk.</p></article>
+    <article class="card glass"><div class="ico">🎙️</div><h3>Voice Queries</h3><p>Speak your legal question instead of typing it. Powered by speech transcription.</p></article>
+    <article class="card glass"><div class="ico">⬇️</div><h3>Downloadable Summary</h3><p>Generate a PDF version of the AI-generated case summary.</p></article>
+  </div>
+</section>
+
+<section class="sec" id="analysis">
+  <h2>From Legal Text to AI Insight</h2>
+  <div class="pipe">
+    <div class="doc glass"><i></i><i></i><i></i><i class="s"></i><i></i><i class="s"></i><span class="beam"></span></div>
+    <div class="pipe-mid"><span class="dots"></span><b>AI PROCESSING</b><small>LLaMA 3.3 70B via Groq</small><span class="dots"></span></div>
+    <div class="pipe-out">
+      <div class="mini glass"><h5>SUMMARY</h5></div><div class="mini glass"><h5>RECOMMENDATION</h5></div><div class="mini glass"><h5>RISK SCORE</h5></div>
+    </div>
+  </div>
+  <figure class="shot wide"><img src="{{ url_for('static', filename='img/demo/lexibot-hero.png') }}" alt="LexiBot app" onerror="this.remove()"><figcaption>Screenshot: Full app view (optional)</figcaption></figure>
+</section>
+
+<section class="sec" id="voice">
+  <div class="split">
+    <div class="mic glass" aria-hidden="true"><span class="micico">🎙️</span><div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div>
+      <h2 class="left">Ask With Your Voice</h2>
+      <p class="sub left">LexiBot can transcribe spoken legal questions using Whisper Large v3 and use the resulting query for case analysis.</p>
+      <ul class="chain"><li>🎙️ Voice Input</li><li>Whisper Large v3</li><li>Text Query</li><li>LexiBot Analysis</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="risk">
+  <div class="split">
+    <div>
+      <h2 class="left">Turn Complex Case Information Into a Simple Risk Insight</h2>
+      <p class="sub left">AI-generated assessment based on the provided case information. A quick signal, not a definitive legal judgment.</p>
+      <span class="tag">AI-generated risk insight</span>
+    </div>
+    <div class="glass riskbox">
+      <div class="gauge lg" data-score="72"><svg viewBox="0 0 120 120"><circle class="trk" cx="60" cy="60" r="54"/><circle class="val" cx="60" cy="60" r="54"/></svg><b><em>0</em><small>/100</small></b></div>
+      <p class="verdict">Moderate Risk</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tech">
+  <h2>Powered by Modern AI Technology</h2>
+  <div class="grid3">
+    <article class="card"><h3>Flask</h3><p>Backend API and application server.</p></article>
+    <article class="card"><h3>PyMuPDF</h3><p>Extracts text from uploaded PDF documents.</p></article>
+    <article class="card"><h3>Groq</h3><p>Provides high-speed AI inference.</p></article>
+    <article class="card"><h3>LLaMA 3.3 70B</h3><p>Legal document summarization, recommendation generation and risk analysis.</p></article>
+    <article class="card"><h3>Whisper Large v3</h3><p>Voice-query transcription.</p></article>
+    <article class="card"><h3>fpdf2</h3><p>Generates downloadable PDF summaries.</p></article>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="notice">
+    <h3>Important Notice</h3>
+    <p>LexiBot provides AI-generated information and analysis for informational and educational purposes only. It is not a substitute for professional legal advice, legal representation, or consultation with a qualified lawyer. AI-generated results may contain errors or omissions and should be independently verified.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Have a Legal Document to Understand?</h2>
+  <p class="sub">Upload your document and explore what AI can uncover.</p>
+  <div class="actions c"><a href="https://lexibot-rkka.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Analyze Your Document →</a><a href="#how" class="btn btn-ghost">Explore How It Works</a></div>
+</section>
+
+<footer class="footer">
+  <div><b>LexiBot</b><p>AI-powered legal document analysis.</p></div>
+
+  <nav aria-label="Footer">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="#tech">Technology</a>
+    <a href="#about">Disclaimer</a>
+  </nav>
+
+  <p class="built">Built with Flask • Groq • LLaMA • Whisper</p>
+
+  <p class="credit">
+    Made by <strong>Sagar Jain</strong> •
+    <a href="mailto:jainsagar22105@gmail.com">jainsagar22105@gmail.com</a>
+  </p>
+
+  <p class="copy">© 2026 LexiBot. All rights reserved.</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
